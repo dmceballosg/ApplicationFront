@@ -3,6 +3,10 @@
   padding-top: 10px;
 }
 
+.img-background > div{
+  text-align: center;
+}
+
 .footer div{
   color: white
 }
@@ -11,6 +15,13 @@
   min-width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.footer-nav{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-nav .container{
@@ -25,6 +36,7 @@
 
 .alert {
   text-align: center;
+  width:500px;
 }
 
 .upload {
@@ -34,4 +46,26 @@
 
 .taps {
   margin-top: 15px;
+}
+
+#upload-data{
+  display: flex;
+  justify-content:center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.alert-div{
+  display: flex;
+  justify-content:center; 
+}
+
+.search-name{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.button-send{
+  text-align: center;
+  width:300px;
 }

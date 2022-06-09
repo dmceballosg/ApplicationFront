@@ -1,0 +1,24 @@
+.img-background{
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+.footer div{
+  color: white
+}
+
+.footer{
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-nav .container{
+  min-width: 100%;
+}
+
+.footer p{
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 10px;
+}

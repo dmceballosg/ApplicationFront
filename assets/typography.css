@@ -22,3 +22,16 @@
   margin-bottom: 0.5rem;
   font-size: 10px;
 }
+
+.alert {
+  text-align: center;
+}
+
+.upload {
+  text-align: center;
+  width: 500px;
+}
+
+.taps {
+  margin-top: 15px;
+}

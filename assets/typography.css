@@ -5,6 +5,7 @@
 
 .img-background > div{
   text-align: center;
+  width: 100%;
 }
 
 .footer div{
@@ -17,11 +18,39 @@
   justify-content: center;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .footer-nav{
   position: fixed;
-  left: 0;
-  bottom: 0;
+  bottom: 0; 
+  padding: 0;
   width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .footer-nav{
+    position: relative !important;
+  }
+  .img-padding{
+    padding-bottom: 15% !important;
+  }
+}
+
+.icons-footer{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 .footer-nav .container{
@@ -69,3 +98,24 @@
   text-align: center;
   width:300px;
 }
+
+.navbar-nav-link{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+}
+
+@media only screen and (min-width: 768px) {
+.visible-menu{
+  display: flex !important;
+  flex-direction: row !important;
+}
+} 
+
+@media only screen and (max-width: 767px) {
+  .visible-menu{
+    flex-direction: column !important;
+  } 
+}
+

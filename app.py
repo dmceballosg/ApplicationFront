@@ -11,25 +11,39 @@ GOVLOGO = "https://www.unidadvictimas.gov.co/sites/default/files/imageblock/logo
 BACKGROUNDHEADER = "https://www.unidadvictimas.gov.co/sites/default/files/styles/slide_700_350/public/banner_unidad_en_linea-01_opt_1.jpg?itok=wK_UE0xp"
 IMGFOOTER = "/assets/img/logo-footer.png"
 
+
+links = html.Div([
+
+    dbc.NavItem(dcc.Link('Search Batch', href='/search_batch', style={
+        "textDecoration": "none", "marginRight": "10px", "color": "#fff"})),
+    dbc.NavItem(dcc.Link('Upload New Data', href='/upload_data', style={
+        "textDecoration": "none", "color": "#fff"})),
+    dbc.NavItem(dbc.NavLink("About", href="/", style={
+        "textDecoration": "none", "color": "#fff"})),
+], className="navbar-nav-link")
+
 search_bar = dbc.Row(
     [
-        dbc.Col(dbc.Input(type="search", placeholder="Search")),
-        dbc.Col(
-            dbc.Button(
-                "Search", color="primary", className="ms-2", n_clicks=0
-            ),
-            width="auto",
-        ),
+        links,
+        dbc.Row([
+            dbc.Col(dbc.Input(type="search", placeholder="Search")),
+            dbc.Col(
+                dbc.Button(
+                    "Search", color="primary", className="ms-2", n_clicks=0
+                ),
+                width="auto",
+            )],style={"width":"auto"}),
     ],
-    className="g-0 ms-auto flex-nowrap mt-3 mt-md-0",
+    className="g-0 ms-auto flex-nowrap mt-3 mt-md-0 visible-menu",
     align="center",
 )
+
 
 navbar = dbc.Navbar(
     dbc.Container(
         [
-            dbc.NavItem(dcc.Link(html.I(className="bi bi-house-fill", style={"fontSize":"25px", "marginTop":"-3px"}), href='/', 
-                style={"textDecoration": "none", "marginRight": "15px", "color": "#fff"})),
+            dbc.NavItem(dcc.Link(html.I(className="bi bi-house-fill", style={"fontSize": "25px", "marginTop": "-3px"}), href='/',
+                                 style={"textDecoration": "none", "marginRight": "15px", "color": "#fff"})),
 
             html.A(
                 # Use row and col to control vertical alignment of logo / brand
@@ -47,12 +61,6 @@ navbar = dbc.Navbar(
 
             dcc.Location(id='url', refresh=False),
 
-            dbc.NavItem(dcc.Link('Search Batch', href='/search_batch', style={
-                        "textDecoration": "none", "marginRight": "10px", "color": "#fff"})),
-            dbc.NavItem(dcc.Link('Upload New Data', href='/upload_data', style={
-                        "textDecoration": "none", "color": "#fff"})),
-            dbc.NavItem(dbc.NavLink("About", href="/", style={
-                        "textDecoration": "none", "color": "#fff"})),
 
             dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
             dbc.Collapse(
@@ -70,14 +78,11 @@ navbar = dbc.Navbar(
 backgroundHeader = dbc.Container(
     dbc.Container(
         dbc.Row(
-            [
-                dbc.Col(html.Img(src=BACKGROUNDHEADER,
-                        style={"minWidth": "80%"})),
-            ],
+            dbc.Col(html.Img(src=BACKGROUNDHEADER,
+                             style={"width": "80%"}, className="img-padding")),
             align="center",
-            className="img-background",
-        ),
-    ),
+            className="img-background"), style={"padding": "0px"}
+    ), style={"padding": "0px"},
 )
 
 img_footer = dbc.Container(
@@ -95,7 +100,31 @@ list_group = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Div(img_footer), width=2),
+                dbc.Col(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.I(className="bi bi-facebook",
+                                               style={"fontSize": "25px", "marginTop": "-3px"})
+                                        ),
+                                dbc.Col(html.I(className="bi bi-twitter",
+                                               style={"fontSize": "25px", "marginTop": "-3px"})
+                                        ),
+                            ]),
+                        dbc.Row(
+                            [
+                                dbc.Col(html.I(className="bi bi-instagram",
+                                               style={"fontSize": "25px", "marginTop": "-3px"})
+                                        ),
+                                dbc.Col(html.I(className="bi bi-youtube",
+                                               style={"fontSize": "25px", "marginTop": "-3px"})
+                                        ),
+                            ]
+
+                        )
+
+                    ], md=2, className="icons-footer"),
+
                 dbc.Col(html.Div(
                     [
                         html.P(
@@ -106,13 +135,13 @@ list_group = html.Div(
                         html.P("Bogotá: Carrera 85D No. 46A - 65, Complejo logístico San Cayetano. Código Postal: 111071.Medellín: Calle 49 No 50-21 piso 14, Edificio del Café. Código Postal: 050010."),
                         html.P(
                             "© Copyrigth 2019 - Todos los derechos reservados Gobierno de Colombia."),
-                    ]), width=6),
+                    ]), md=6),
                 dbc.Col(html.Div([
                         html.P("Teléfono conmutador: +57 (601) 426 11 11."),
                         html.P("Línea Gratuita Nacional: (01 8000 911 119)."),
                         html.P("Correo institucional:"),
                         html.P("servicioalciudadano@unidadvictimas.gov.co"),
-                        ], style={'paddingTop': '15px'}), width=4,),
+                        ], style={'paddingTop': '15px'}), md=4,),
             ],
             className="footer",
             style={"minWidth": "100%"},
@@ -243,7 +272,9 @@ dinamicLayout = html.Div([
     footer
 ])
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP])
+app = dash.Dash(external_stylesheets=[
+                dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP])
+
 
 @app.callback(
     Output("navbar-collapse", "is_open"),
@@ -271,7 +302,7 @@ app.layout = dbc.Container(
     [
         dinamicLayout
     ],
-    style={"maxWidth": "none"},
+    style={"maxWidth": "none", "padding": "0px"},
 )
 
 if __name__ == "__main__":

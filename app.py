@@ -73,6 +73,7 @@ navbar = dbc.Navbar(
     ),
     color="dark",
     dark=True,
+    className="navbar-fixed-top",
 )
 
 backgroundHeader = dbc.Container(
@@ -274,7 +275,7 @@ dinamicLayout = html.Div([
 
 app = dash.Dash(external_stylesheets=[
                 dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP])
-
+app.title = "DS4A"
 
 @app.callback(
     Output("navbar-collapse", "is_open"),
@@ -307,3 +308,4 @@ app.layout = dbc.Container(
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+

@@ -26,6 +26,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   min-height: 100vh;
 }
 
@@ -41,6 +42,7 @@ body {
     position: relative !important;
   }
   .img-padding{
+    padding-top: 15% !important;
     padding-bottom: 15% !important;
   }
 }
@@ -97,6 +99,12 @@ body {
 .button-send{
   text-align: center;
   width:300px;
+}
+
+.navbar-fixed-top{
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .navbar-nav-link{

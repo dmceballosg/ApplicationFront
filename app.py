@@ -1,5 +1,6 @@
 from turtle import ht
 import dash
+import dash_auth
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from dash import dcc
@@ -42,6 +43,9 @@ search_bar = dbc.Row(
     align="center",
 )
 
+VALID_USERNAME_PASSWORD_PAIRS = {
+    'hello': 'world'
+}
 
 navbar = dbc.Navbar(
     dbc.Container(
@@ -338,7 +342,14 @@ dinamicLayout = html.Div([
     footer
 ])
 
+app = dash.Dash(external_stylesheets=[
+                dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP],suppress_callback_exceptions=True)
+app.title = "DS4A"
 
+auth = dash_auth.BasicAuth(
+    app,
+    VALID_USERNAME_PASSWORD_PAIRS
+)
 
 @app.callback(
     Output("navbar-collapse", "is_open"),

@@ -15,17 +15,15 @@ if __name__ == '__main__':
         html.Div(id='output_div')
     ])
 
-    def full_name(name1, name2, lastname1, lastname2):
-        name = (name1 + ' ' + name2 + ' ' + lastname1 + ' ' + lastname2).upper()
-        print(name)
-        return name
-
     @app.callback(Output('output_div', 'children'),
-                  [Input('submit-button', 'n_clicks')],
-                  [State('username', 'value')],
+                  Input('submit-button', 'n_clicks'),
+                  State('name1', 'value'),
+                  State('name2', 'value'),
+                  State('lastname1', 'value'),
+                  State('lastname2', 'value')
                   )
-    def update_output(clicks, name):
+    def update_output(clicks, name1, name2, lastname1, lastname2):
         if clicks is not None:
-            print(clicks, name = full_name(name1, name2, lastname1, lastname2))
+            return str(name1) + ' ' + str(name2) + ' ' + str(lastname1) + ' ' + str(lastname2)
 
-    app.run_server(host='0.0.0.0')
+    app.run_server(host='0.0.0.0', debug=True)

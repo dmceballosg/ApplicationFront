@@ -177,17 +177,31 @@ tab1_content = dbc.Card(
                         ]
                     ),
                     dbc.Row(
-                        dbc.Button("Search", color="primary",
-                                   className="button-send",),
-                        style={"display": "flex", "justifyContent": "center",
-                        "margin-top": "30px"}
+                        html.Button(id='submit-button', type='submit', children='Submit')
                     ),
+                    html.Div(id='output_div')
                 ],
             )
         ], className="search-name",
     ),
     className="search-name",
 )
+
+app = dash.Dash(external_stylesheets=[
+                dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP])
+app.title = "DS4A"
+
+@app.callback(Output('output_div', 'children'),
+                  Input('submit-button', 'n_clicks'),
+                  State('name1', 'value'),
+                  State('name2', 'value'),
+                  State('lastname1', 'value'),
+                  State('lastname2', 'value')
+                  )
+                  
+def update_output(clicks, name1, name2, lastname1, lastname2):
+        if clicks is not None:
+            return str(name1) + ' ' + str(name2) + ' ' + str(lastname1) + ' ' + str(lastname2)
 
 tab2_content = dbc.Card(
     dbc.CardBody(
